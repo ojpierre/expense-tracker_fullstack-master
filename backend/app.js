@@ -24,11 +24,11 @@ readdirSync("./routes").map((route) =>
   app.use("/api/v1", require("./routes/" + route))
 );
 
-const server = () => {
-  db();
-  app.listen(process.env.PORT || 5000, () => {
-    console.log("Backend server is running!");
-  });
+const startServer = async () => {
+  await db();
+  const port = process.env.PORT || 5000;
+  app.listen(port, () => console.log(`Backend server is running on port ${port}`));
 };
+
 
 server();
